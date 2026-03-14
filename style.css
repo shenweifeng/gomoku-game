@@ -1,0 +1,182 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Microsoft YaHei', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    text-align: center;
+    padding: 20px;
+}
+
+h1 {
+    color: #fff;
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.status {
+    color: #fff;
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 25px;
+    display: inline-block;
+}
+
+.board {
+    display: inline-grid;
+    grid-template-columns: repeat(15, 32px);
+    grid-template-rows: repeat(15, 32px);
+    background: #dcb35c;
+    border: 3px solid #8b4513;
+    border-radius: 5px;
+    padding: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+.board::before {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    pointer-events: none;
+}
+
+.cell {
+    width: 32px;
+    height: 32px;
+    position: relative;
+    cursor: pointer;
+}
+
+.cell::before,
+.cell::after {
+    content: '';
+    position: absolute;
+    background: #8b4513;
+}
+
+.cell::before {
+    width: 1px;
+    height: 100%;
+    left: 50%;
+    top: 0;
+}
+
+.cell::after {
+    width: 100%;
+    height: 1px;
+    top: 50%;
+    left: 0;
+}
+
+/* 边缘处理 */
+.cell[data-row="0"]::before { top: 50%; height: 50%; }
+.cell[data-row="14"]::before { height: 50%; }
+.cell[data-col="0"]::after { left: 50%; width: 50%; }
+.cell[data-col="14"]::after { width: 50%; }
+
+/* 天元和星位 */
+.cell.star::before {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: #8b4513;
+    border-radius: 50%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
+.cell:hover::before {
+    z-index: 1;
+}
+
+.piece {
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    cursor: default;
+}
+
+.piece.black {
+    background: radial-gradient(circle at 30% 30%, #555, #000);
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.piece.white {
+    background: radial-gradient(circle at 30% 30%, #fff, #ddd);
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.piece.winning {
+    animation: pulse 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes pulse {
+    from { transform: translate(-50%, -50%) scale(1); }
+    to { transform: translate(-50%, -50%) scale(1.1); }
+}
+
+.controls {
+    margin-top: 20px;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+button {
+    padding: 12px 30px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+#restart {
+    background: #4CAF50;
+    color: white;
+}
+
+#restart:hover {
+    background: #45a049;
+    transform: translateY(-2px);
+}
+
+#undo {
+    background: #ff9800;
+    color: white;
+}
+
+#undo:hover {
+    background: #e68a00;
+    transform: translateY(-2px);
+}
+
+button:active {
+    transform: translateY(0);
+}
