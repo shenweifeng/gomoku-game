@@ -1,82 +1,78 @@
-# Gomoku Game (五子棋)
+# 五子棋 (Gomoku Game)
 
-A web-based Gomoku (Five-in-a-Row) game with simple AI opponent.
+一个基于网页的五子棋游戏，支持人机对战。
 
-## Features
+## 功能特性
 
-- **Standard 15×15 board** with star points (天元 and corner stars)
-- **Player vs AI mode** - Player plays black (first), AI plays white
-- **Smart AI** - Heuristic-based position evaluation algorithm
-  - Offensive and defensive scoring
-  - Pattern recognition (活四, 冲四, 活三, etc.)
-  - Center position bonus
-- **Win detection** - Five in a row horizontally, vertically, or diagonally
-- **Undo function** - Take back the last move (both player and AI)
-- **Restart game** - Start a new game anytime
-- **Beautiful UI** - Gradient background with smooth animations
+- **标准 15×15 棋盘** - 带星位标记（天元和四角星）
+- **人机对战模式** - 玩家执黑先行，AI 执白后手
+- **智能 AI** - 基于启发式的位置评估算法
+  - 进攻与防守双向评分
+  - 棋型识别（活四、冲四、活三等）
+  - 中心位置加权
+- **胜负判断** - 横、竖、斜四个方向检测五子连珠
+- **悔棋功能** - 撤销上一步棋（同时撤销玩家和AI各一步）
+- **重新开始** - 随时开始新游戏
+- **精美界面** - 渐变背景与流畅动画效果
 
-## How to Play
+## 如何开始
 
-1. Open `index.html` in your browser
-2. Click on any intersection to place your black stone
-3. AI will automatically respond with a white stone
-4. First to get five stones in a row wins!
+1. 在浏览器中打开 `index.html` 文件
+2. 点击棋盘交叉点落子（黑方）
+3. AI 会自动回应（白方）
+4. 先连成五子者获胜！
 
-## Tech Stack
+## 技术栈
 
-- **HTML5** - Game structure
-- **CSS3** - Styling and animations
-- **Vanilla JavaScript** - Game logic and AI (no frameworks required)
+- **HTML5** - 页面结构
+- **CSS3** - 样式布局与动画
+- **原生 JavaScript** - 游戏逻辑与AI（无需框架）
 
-## Project Structure
+## 项目结构
 
 ```
 gomoku-game/
-├── index.html      # Main game page
-├── style.css       # Styles and layout
-├── script.js       # Game logic and AI
-├── .gitignore      # Git ignore configuration
-└── README.md       # Project documentation
+├── index.html      # 游戏主页面
+├── style.css       # 样式文件
+├── script.js       # 游戏逻辑与AI
+├── .gitignore      # Git忽略配置
+└── README.md       # 项目说明文档
 ```
 
-## AI Algorithm
+## AI 算法说明
 
-The AI uses a heuristic evaluation function to score each empty position:
+AI 使用启发式评估函数对每个空位进行评分：
 
-1. **Line Evaluation** - For each direction (horizontal, vertical, two diagonals), count:
-   - Number of consecutive stones
-   - Number of open ends
-   - Blocked ends
+1. **棋型评估** - 对每个方向（横、竖、两条对角线）统计：
+   - 连续棋子数量
+   - 开放端数量
+   - 被堵端数量
 
-2. **Scoring** - Higher scores for better patterns:
-   - Five in a row (五连): 100,000 points (winning)
-   - Open four (活四): 10,000 points
-   - Closed four (冲四): 1,000 points
-   - Open three (活三): 1,000 points
-   - Closed three (冲三): 100 points
-   - Open two (活二): 100 points
+2. **评分规则** - 棋型越好分数越高：
+   - 五连：100,000 分（获胜）
+   - 活四：10,000 分
+   - 冲四：1,000 分
+   - 活三：1,000 分
+   - 冲三：100 分
+   - 活二：100 分
 
-3. **Combined Score**:
-   - Offensive value (AI's stones) × 1.1
-   - Defensive value (blocking player)
-   - Center position bonus
+3. **综合评分**：
+   - 进攻价值（AI棋子）× 1.1
+   - 防守价值（阻止玩家）
+   - 中心位置加分
 
-## Screenshots
+## 浏览器支持
 
-The game features a clean, modern interface with a gradient purple background and a traditional wooden-styled board.
-
-## Browser Support
-
-Works in all modern browsers:
+支持所有现代浏览器：
 - Chrome
 - Firefox
 - Safari
 - Edge
 
-## License
+## 开源协议
 
 MIT License
 
-## Author
+## 作者
 
-Created with ❤️
+用 ❤️ 创作
